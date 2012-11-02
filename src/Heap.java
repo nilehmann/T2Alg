@@ -10,6 +10,7 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
 		position = new int[n+1];
 		size = 0;
 	}
+		
 	
 	@Override
 	public void offer(int key, T value) {
@@ -40,14 +41,7 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
 	@Override
 	public int size() {
 		return size;
-	}
-
-	@Override
-	public void construct(Pair<T> arr[]){
-		for (int i = 0; i < arr.length; i++) 
-			offer(arr[i].first, arr[i].second);
-		
-	}
+	}	
 	
 	@Override
 	public void clear(){
@@ -55,6 +49,8 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
 			heap = null;
 		size = 0;
 	}
+	
+	
 	
 	public String toString(){
 		StringBuilder sb = new StringBuilder();

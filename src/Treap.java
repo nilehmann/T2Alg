@@ -25,13 +25,7 @@ public class Treap<T extends Comparable<T>> implements PriorityQueue<T>{
 	public void offer(int key, T val) {
 		insert(key,val);
 	}
-	
-	@Override
-	public void construct(Pair<T> arr[]){
-		for (int i = 0; i < arr.length; i++) 
-			insert(arr[i].first, arr[i].second);
-		
-	}
+
 	
 	@Override 
 	public void clear(){

@@ -3,11 +3,11 @@ import java.util.List;
 
 
 public class Prim {
-	private List<Pair<Double>> graph[];
+	private List<Pair<Integer>> graph[];
 	private PriorityQueue<Edge> queue;
 	private int N;
 	
-	public Prim(List<Pair<Double>> graph[], int N){
+	public Prim(List<Pair<Integer>> graph[], int N){
 		this.graph = graph;
 		this.N = N;
 		queue = new Heap<Edge>(N);
@@ -24,7 +24,7 @@ public class Prim {
 		queue.clear();
 		int count = 0;
 		node[w] = -1000;
-		for(Pair<Double> v : graph[w]){
+		for(Pair<Integer> v : graph[w]){
 			queue.offer(count, new Edge(count++, w, v.first,  v.second));
 			node[v.first] = v.second;
 		}
@@ -35,7 +35,7 @@ public class Prim {
 			MST.add(edge.second);
 			int u = edge.second.getEndNode();
 			
-			for(Pair<Double> v : graph[u]){
+			for(Pair<Integer> v : graph[u]){
 				if(node[v.first] == -1){
 					Edge e = new Edge(count, u, v.first,  v.second);
 					node[v.first] = v.second; 

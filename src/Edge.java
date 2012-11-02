@@ -3,9 +3,9 @@ public class Edge implements Comparable<Edge> {
     private int ID; 
     private int startNode; 
     private int endNode; 
-    private double distance; 
+    private int distance; 
       
-    public Edge(int id, int sn, int en, double dist){ 
+    public Edge(int id, int sn, int en, int dist){ 
         ID=id; 
         startNode=sn; 
         endNode=en; 
@@ -16,7 +16,7 @@ public class Edge implements Comparable<Edge> {
     	return ID+": ("+startNode+","+endNode+","+distance+")";
     }
     
-    public double getDistance(){ 
+    public int getDistance(){ 
         return distance; 
     } 
       
@@ -34,11 +34,8 @@ public class Edge implements Comparable<Edge> {
 
 	@Override
 	public int compareTo(Edge o) {
-		if(this.distance < o.distance)
-			return -1;
-		else if(this.distance > o.distance)
-			return 1;
-		else
-			return 0;
+		if(this.distance == o.distance)
+			return this.ID - o.ID;
+		return this.distance - o.distance;
 	} 
 } 

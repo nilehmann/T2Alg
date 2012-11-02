@@ -48,13 +48,6 @@ public class RadixSort {
         return (integer / divisor) % 10;
     }
     
-    public static void main(String[] args){
-    	int[] a = {1245,152,7345,13,2346,23456,24,1563,2314,52623,3452,3455};
-    	radixSort(a, 5);
-    	for(int i : a){
-    		System.out.println(i);
-    	}
-    }
 }
 
 class CountingValue{
