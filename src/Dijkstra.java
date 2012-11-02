@@ -30,8 +30,8 @@ public class Dijkstra {
 			Pair<Double> nodo = queue.poll();
 			dist[nodo.first] = nodo.second;
 			
-			for(Pair vecino : graph[nodo.first]){
-				double new_dist =  dist[nodo.first] + (Double) vecino.second;
+			for(Pair<Double> vecino : graph[nodo.first]){
+				double new_dist =  dist[nodo.first] + vecino.second;
 				if(new_dist < dist[vecino.first]){
 					queue.update(vecino.first, new_dist);
 					dist[vecino.first] = new_dist;

@@ -3,8 +3,8 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
 	private Pair<T> heap[];
 	private int position[];
 	private int size;
-	
 
+	@SuppressWarnings("unchecked")
 	public Heap(int n){
 		heap = new Pair[n+1];
 		position = new int[n+1];

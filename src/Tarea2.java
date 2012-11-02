@@ -15,6 +15,7 @@ public class Tarea2 {
 	public static void main(String[] args) throws IOException {
 		System.setIn(new FileInputStream("NA.cedge"));
 		
+		@SuppressWarnings("unchecked")
 		List<Pair<Double>> graph[] = new ArrayList[V];
 		Edge edges[] = new Edge[E];
 		for (int i = 0; i < V; i++) 
