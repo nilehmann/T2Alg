@@ -1,6 +1,6 @@
 
-public class Heap implements PriorityQueue{
-	private Pair heap[];
+public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
+	private Pair<T> heap[];
 	private int position[];
 	private int size;
 	
@@ -12,25 +12,24 @@ public class Heap implements PriorityQueue{
 	}
 	
 	@Override
-	public void offer(int key, double value) {
-		
-		heap[++size] = new Pair(key,value);
+	public void offer(int key, T value) {
+		heap[++size] = new Pair<T>(key,value);
 		position[key] = size;
-				
+		
 		bubbleUp(size);
 	}
 
 
 	@Override
-	public Pair poll() {
-		Pair p = heap[1];
+	public Pair<T> poll() {
+		Pair<T> p = heap[1];
 		heap[1] = heap[size--];
 		bubbleDown(1);
 		return p;
 	}
 	
 	@Override
-	public void update(int key, double value){
+	public void update(int key, T value){
 		int i = position[key];
 		heap[i].second = value;
 		
@@ -44,7 +43,7 @@ public class Heap implements PriorityQueue{
 	}
 
 	@Override
-	public void construct(Pair arr[]){
+	public void construct(Pair<T> arr[]){
 		for (int i = 0; i < arr.length; i++) 
 			offer(arr[i].first, arr[i].second);
 		
@@ -68,22 +67,22 @@ public class Heap implements PriorityQueue{
 		return sb.toString();
 		
 	}	
-	
+
 	private void bubbleDown(int i){
 		int k;
 		while( 2*i <= size){
 			k = 2*i;
-			if(k+1 <= size && heap[k+1].second<heap[k].second)
+			if(k+1 <= size && heap[k+1].second.compareTo(heap[k].second) < 0)
 				k = k+1;
-			if(heap[i].second < heap[k].second)
+			if(heap[i].second.compareTo(heap[k].second) < 0)
 				break;
 			swap(i,k);
 			i = k;
 		}
 	}
-	
+
 	private void bubbleUp(int i){
-		while(i>1 && heap[i/2].second > heap[i].second){
+		while(i>1 && heap[i/2].second.compareTo(heap[i].second) > 0){
 			swap(i, i/2);
 			i = i/2;
 		}
@@ -91,7 +90,7 @@ public class Heap implements PriorityQueue{
 	
 	
 	private void swap(int i, int j){
-		Pair temp = heap[i];
+		Pair<T> temp = heap[i];
 
 		position[heap[i].first] = j;
 		position[heap[j].first] = i;

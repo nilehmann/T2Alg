@@ -1,9 +1,9 @@
 
-public interface PriorityQueue {
+public interface PriorityQueue<T extends Comparable<T>> {
 	int size();
-	Pair poll();
-	void offer(int key, double val);
-	void update(int key, double val);
-	void construct(Pair arr[]);
+	Pair<T> poll();
+	void offer(int key, T val);
+	void update(int key, T val);
+	void construct(Pair<T> arr[]);
 	void clear();
 }

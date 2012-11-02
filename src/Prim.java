@@ -5,52 +5,50 @@ import java.util.List;
 
 
 public class Prim {
-	private List<Pair> graph[];
-	private List<Edge> edges;
-	private PriorityQueue queue;
+	private List<Pair<Double>> graph[];
+	private PriorityQueue<Edge> queue;
 	private int N;
 	
-	public Prim(List<Pair> graph[], int N){
+	public Prim(List<Pair<Double>> graph[], int N){
 		this.graph = graph;
 		this.N = N;
-		queue = new Heap(N);
+		queue = new Heap<Edge>(N);
 	}
 	
 	public List<Edge> compute(int w){
-		int node[] = new int[N+1];
+		double node[] = new double[N+1];
+		int nodeToEdge[] = new int[N+1];
 		
-		for (int i = 0; i <= N; i++) 
-			node[i] = -2;
+		for (int i = 0; i <= N; i++)
+			node[i] = -1;
 		
 		List<Edge> MST = new LinkedList<Edge>();
 		queue.clear();
-		edges = new ArrayList<Edge>();
 		int count = 0;
-		for(Pair v : graph[w]){
-			queue.offer(count, v.second);
-			edges.add(new Edge(count, w, v.first, v.second));
-			node[v.first] = count++;
+		node[w] = -1000;
+		for(Pair<Double> v : graph[w]){
+			queue.offer(count, new Edge(count++, w, v.first,  v.second));
+			node[v.first] = v.second;
 		}
 		
 		while(queue.size() > 0){
-			Pair edge = queue.poll();
-			MST.add(edges.get(edge.first));
-			node[edges.get(edge.first).getStartNode()] = -1;
-			int u = edges.get(edge.first).getEndNode();
+			Pair<Edge> edge = queue.poll();
+			System.out.println(edge);
+			node[edge.second.getStartNode()] = -2;
+			MST.add(edge.second);
+			int u = edge.second.getEndNode();
 			
-			for(Pair v : graph[u]){
-				if(node[v.first] == -2){
-					Edge e = new Edge(count, u, v.first, v.second);
-					node[v.first] = count; 
-					queue.offer(count++, v.second);
-					edges.add(e);
+			for(Pair<Double> v : graph[u]){
+				if(node[v.first] == -1){
+					Edge e = new Edge(count, u, v.first,  v.second);
+					node[v.first] = v.second; 
+					nodeToEdge[v.first] = count;
+					queue.offer(count++, e);
 				}
-				else if(node[v.first] != -1){
-					Edge e = edges.get(node[v.first]);
-					if(v.second < e.getDistance()){
-						edges.set(e.getID(), new Edge(e.getID(), u, v.first, v.second));
-						queue.update(e.getID(), v.second);
-					}
+				else if(node[v.first] != -2 && v.second < node[v.first]){
+					Edge e = new Edge(nodeToEdge[v.first], u, v.first, v.second);
+					queue.update(nodeToEdge[v.first], e);
+					node[v.first] = v.second;
 				}
 			}
 			

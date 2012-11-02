@@ -1,11 +1,13 @@
 
-class Pair{
+class Pair<T extends Comparable <T>>{
 	int first;
-	double second;
-	public Pair(int k, double v){
+	T second;
+	
+	public Pair(int k, T v){
 		first = k;
 		second = v;
 	}
+
 	public String toString(){
 		return "("+first+","+second+")";
 	}

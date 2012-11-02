@@ -1,4 +1,4 @@
-public class Edge { 
+public class Edge implements Comparable<Edge> { 
   
     private int ID; 
     private int startNode; 
@@ -30,5 +30,15 @@ public class Edge {
   
     public int getID(){ 
         return ID; 
-    } 
+    }
+
+	@Override
+	public int compareTo(Edge o) {
+		if(this.distance < o.distance)
+			return -1;
+		else if(this.distance > o.distance)
+			return 1;
+		else
+			return 0;
+	} 
 } 
