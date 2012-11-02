@@ -33,7 +33,6 @@ public class Prim {
 		
 		while(queue.size() > 0){
 			Pair<Edge> edge = queue.poll();
-			System.out.println(edge);
 			node[edge.second.getStartNode()] = -2;
 			MST.add(edge.second);
 			int u = edge.second.getEndNode();

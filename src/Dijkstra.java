@@ -17,15 +17,14 @@ public class Dijkstra {
 	public double compute(int s, int t){
 		queue.clear();
 		
-		Pair<Double> arr[] = new Pair[N+1];
 		Double dist[] = new Double[N+1];
-		for (int i = 1; i <= N; i++){
-			arr[i] = new Pair<Double>(i, Double.MAX_VALUE-5);
-			dist[i] = Double.MAX_VALUE;
+		for (int i = 0; i < N; i++){
+			if(i!= s){
+				queue.offer(i, Double.MAX_VALUE);
+				dist[i] = Double.MAX_VALUE;
+			}
 		}
-		arr[s] = new Pair<Double>(s,0.0);
-		queue.construct(arr);
-		
+		queue.offer(s,0.0);
 		
 		while(queue.size()>0){
 			Pair<Double> nodo = queue.poll();
