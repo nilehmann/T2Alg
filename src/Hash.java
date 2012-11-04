@@ -8,8 +8,7 @@ public class Hash {
 	
 	public int add(int i, Edge a){
 		while(arr[i++] != null);
-		i--;
-		arr[i] = a;
+		arr[--i] = a;
 		return i;
 	}
 	
