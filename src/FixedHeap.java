@@ -37,12 +37,6 @@ public class FixedHeap implements Iterable{
 		return size;
 	}	
 	
-	public void clear(){
-		for (int i = 0; i < size; i++) 
-			heap = null;
-		size = 0;
-	}
-	
 
 	private void bubbleDown(int i){
 		int k;
