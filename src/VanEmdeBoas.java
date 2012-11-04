@@ -1,7 +1,3 @@
-import java.util.LinkedList;
-import java.util.List;
-
-
 public class VanEmdeBoas {
 	private int M;
 	private int size;
@@ -12,6 +8,7 @@ public class VanEmdeBoas {
 	private VanEmdeBoas trees[];
 	private int sqrt;
 	
+
 	
 	public VanEmdeBoas(int M) {
 		this.M = M;
@@ -91,4 +88,6 @@ public class VanEmdeBoas {
 			top.insert(i);
 		
 	}
+	
+
 }

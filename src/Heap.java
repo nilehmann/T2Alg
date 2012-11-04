@@ -24,7 +24,9 @@ public class Heap<T extends Comparable<T>> implements PriorityQueue<T>{
 	@Override
 	public Pair<T> poll() {
 		Pair<T> p = heap[1];
-		heap[1] = heap[size--];
+		heap[1] = heap[size];
+		position[heap[1].first] = 1;
+		heap[size--] = null;
 		bubbleDown(1);
 		return p;
 	}

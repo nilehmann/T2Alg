@@ -1,20 +1,30 @@
-public class QuickSort  { 
-  static private Edge[] numbers; 
-  static private int number; 
+public class QuickSort implements Iterable { 
+  private Edge[] numbers; 
+  private int number; 
+  private int current;
   
   
-  
-  static public void sort(Edge[] values) { 
+  public QuickSort(Edge[] values) { 
     // Check for empty or null array 
     if (values ==null || values.length==0){ 
       return; 
-    } 
-    numbers = values; 
+    }
+    
     number = values.length; 
-    quicksort(0, number - 1); 
+    numbers=new Edge[number];
+    for(int i=0; i<number; i++)
+    	numbers[i]=values[i];
+    current=0;
+    quicksort(numbers, 0, number - 1); 
   } 
   
-  static private void quicksort(int low, int high) { 
+  
+  @Override
+  public Edge getNext(){
+	  return numbers[current++];
+  }
+  
+  static public void quicksort(Edge[] numbers, int low, int high) { 
     int i = low, j = high; 
     // Get the pivot element from the middle of the list 
     Edge pivot = numbers[low + (high-low)/2]; 
@@ -38,21 +48,23 @@ public class QuickSort  {
       // values. 
       // As we are done we can increase i and j 
       if (i <= j) { 
-        exchange(i, j); 
+        exchange(numbers, i, j); 
         i++; 
         j--; 
       } 
     } 
     // Recursion 
     if (low < j) 
-      quicksort(low, j); 
+      quicksort(numbers,low, j); 
     if (i < high) 
-      quicksort(i, high); 
+      quicksort(numbers,i, high); 
   } 
   
-  static private void exchange(int i, int j) { 
+  static private void exchange(Edge numbers[],int i, int j) { 
     Edge temp = numbers[i]; 
     numbers[i] = numbers[j]; 
     numbers[j] = temp; 
-  } 
+  }
+  
+
 }

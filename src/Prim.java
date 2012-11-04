@@ -2,15 +2,28 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class Prim {
+public class Prim {	
+	static int HEAP = 1;
+	static int TREAP = 2;
+	static int ARRAY = 3;
+
 	private List<Pair<Integer>> graph[];
 	private PriorityQueue<Edge> queue;
 	private int N;
 	
-	public Prim(List<Pair<Integer>> graph[], int N){
+	public Prim(List<Pair<Integer>> graph[], int N, int minMethod){
 		this.graph = graph;
 		this.N = N;
-		queue = new Heap<Edge>(N);
+		
+		if(minMethod == HEAP)
+			queue = new Heap<Edge>(N);
+		else if(minMethod == TREAP)
+			queue = new Treap<Edge>(N);
+		else if(minMethod == ARRAY)
+			queue = new PriorityArray<Edge>(N);
+		else
+			queue = new Heap<Edge>(N);
+		
 	}
 	
 	public List<Edge> compute(int w){

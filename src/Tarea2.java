@@ -18,30 +18,25 @@ public class Tarea2 {
 		@SuppressWarnings("unchecked")
 		List<Pair<Integer>> graph[] = new ArrayList[V];
 		Edge edges[] = new Edge[E];
+		
 		for (int i = 0; i < V; i++) 
 			graph[i] = new ArrayList<Pair<Integer>>();
 		
 		readGraph(graph, edges, V, E);
 		
-		QuickSort.sort(edges);
-		
-		for (int i = 1; i < edges.length; i++) {
-			if (edges[i].compareTo(edges[i-1]) == 0) {
-				System.out.println(edges[i]);
-			}
+		Iterable v = new IterableVEB(edges,1048576);
+
+		Edge ant = v.getNext(); 
+		Edge curr;
+		while((curr = v.getNext()) != null){
+			if (curr.getDistance() > ant.getDistance()) 
+				System.out.println(curr);
+			
 		}
 	
 		
-		Prim p = new Prim(graph, V);
-		System.out.println(p.compute(175812).size());
 		
 
-		Kruskal k = new Kruskal(edges, V);
-		System.out.println(k.compute().size());
-		
-		Dijkstra d = new Dijkstra(graph, V);
-		
-		System.out.println(d.compute(1, 175812));
 	}
 	
 	static void readGraph(List<Pair<Integer>> graph[], Edge edges[], int V, int E) throws IOException{

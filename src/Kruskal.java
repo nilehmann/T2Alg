@@ -11,14 +11,14 @@ public class Kruskal {
     }
           
 	public List<Edge> compute(){
-    	UnionFind u = new UnionFind(N);
-        QuickSort.sort(edges);
+		UnionFind u= new UnionFind(N);
+        QuickSort qs= new QuickSort(edges);
 		List<Edge> MST = new LinkedList<Edge>();
 		int s, e;
-		int E = edges.length;
+		int E=edges.length;
 		Edge n;
 		for (int i=0; i<E;i++){
-			n=edges[i];
+			n=qs.getNext();
 			s=n.getStartNode();
 			e=n.getEndNode();
 			if(u.find(s)!=u.find(e)){
