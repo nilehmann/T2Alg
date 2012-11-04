@@ -33,7 +33,6 @@ public class Tarea2 {
 			ant = curr;
 		}
 		
-		
 //		@SuppressWarnings("unchecked")
 //		List<Pair<Integer>> graph[] = new ArrayList[V];
 //		Edge edges[] = new Edge[E];
