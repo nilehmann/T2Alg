@@ -10,7 +10,7 @@ public class IterableVEB implements Iterable{
 		current = -1;
 		h = new Hash(M,10);
 		
-		vEB = new VanEmdeBoas(M);
+		vEB = new VanEmdeBoas(M*10);
 		for(Edge e : edges)
 			vEB.insert(h.add(e.getDistance(), e));
 	}
