@@ -1,14 +1,31 @@
-public class RadixSort {
+public class RadixSort implements Iterable{
+	private int next;
+	private Edge array[];
 
-    static void radixSort(int[] input, int u) {
+	public RadixSort(Edge[] input, int u){
+		array = input;
+		radixSort(array, u);
+	}
+	
+	
+	@Override
+	public Edge getNext() {
+		if(next == array.length)
+			return null;
+		return array[next++];
+	}
+    
+	
+	
+    static void radixSort(Edge[] input, int u) {
     	CountingValue arr[] = new CountingValue[input.length]; 
     	for (int i = 0; i < arr.length; i++) 
 			arr[i] = new CountingValue(-1, input[i]);
     	
     	for (int dig = 1, div = 1; dig <= u; dig++, div *=10) {
-    		for (int i = 0; i < arr.length; i++){
-    			arr[i].key = getDigit(arr[i].val, div);
-    		}
+    		for (int i = 0; i < arr.length; i++)
+    			arr[i].key = getDigit(arr[i].val.getDistance(), div);
+    		
 			countingSort(arr,10);
 			
 		}
@@ -47,14 +64,17 @@ public class RadixSort {
     static int getDigit(int integer, int divisor) {
         return (integer / divisor) % 10;
     }
-    
+
+
+
+
 }
 
 class CountingValue{
 	int key;
-	int val;
+	Edge val;
 	
-	public CountingValue(int k, int v){
+	public CountingValue(int k, Edge v){
 		key = k;
 		val = v;
 	}

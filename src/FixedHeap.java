@@ -1,16 +1,13 @@
-import java.util.Arrays;
 
-
-public class Heap2{
+public class FixedHeap implements Iterable{
 	private Edge heap[];
 	private int size;
 
-	public Heap2(Edge arr[]){
+	public FixedHeap(Edge arr[]){
 		int N = arr.length;
 		heap = new Edge[N+1];
 		for (int i = 0; i < arr.length; i++) 
 			heap[i+1] = arr[i];
-		
 		size = 0;
 		int start = (N+1)/2;
 		while(start >= 1){
@@ -20,13 +17,13 @@ public class Heap2{
 	}
 		
 	
-	public void offer(int key, Edge value) {
-		heap[++size] = value;
-		
-		bubbleUp(size);
+	@Override
+	public Edge getNext() {
+		if(size == 0)
+			return null;
+		return poll();
 	}
 	
-
 
 	public Edge poll() {
 		Edge p = heap[1];
@@ -46,8 +43,6 @@ public class Heap2{
 		size = 0;
 	}
 	
-	
-
 
 	private void bubbleDown(int i){
 		int k;
@@ -76,6 +71,9 @@ public class Heap2{
 		heap[i] = heap[j];
 		heap[j] = temp;
 	}
+
+
+
 
 
 
