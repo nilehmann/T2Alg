@@ -55,10 +55,10 @@ public class VanEmdeBoas {
 	}
 	
 	public void insert(int x){
-		System.out.println(x+" "+M);
+		//System.out.println(x+" "+M);
 		if(min > max){
 			min = max = x;
-			System.out.println("1 min: "+min+" max: "+max);
+			//System.out.println("1 min: "+min+" max: "+max);
 			size++;
 			return;
 		}
@@ -71,7 +71,7 @@ public class VanEmdeBoas {
 				max = x;
 				size++;
 			}
-			System.out.println("2 min: "+min+" max: "+max);
+			//System.out.println("2 min: "+min+" max: "+max);
 			return;
 		}
 		if(x < min){
@@ -84,7 +84,7 @@ public class VanEmdeBoas {
 			max = x;
 			x = temp;
 		}
-		System.out.println("3 min: "+min+" max: "+max);
+		//System.out.println("3 min: "+min+" max: "+max);
 		int i = x/sqrt;
 		trees[i].insert(x % sqrt);
 		if(trees[i].min == trees[i].max)
