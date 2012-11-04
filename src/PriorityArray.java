@@ -20,7 +20,7 @@ public class PriorityArray<T extends Comparable<T>> implements PriorityQueue<T>{
 		while(arr[i++] == null);
 		
 		Pair<T> min = arr[i-1];
-		int imin = i;
+		int imin = i-1;
 		for (;i < arr.length; ++i) {
 			if(arr[i] != null && arr[i].second.compareTo(min.second) < 0){
 				min =  arr[i];
