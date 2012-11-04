@@ -34,6 +34,9 @@ public class VanEmdeBoas {
 		if(x > max){
 			return M;
 		}
+		if(x==max)//agregado por tefa
+			return max;
+		
 		if(top.min > top.max){
 			if( x > min)
 				return max;
@@ -42,12 +45,12 @@ public class VanEmdeBoas {
 		int i = x/sqrt;
 		int lo = x%sqrt;
 		int hi = x - lo;
-		if(lo <= trees[i].max){
+		if(lo <= trees[i].max){//
 			return hi + trees[i].findNext(lo);
 		}
 		int next = top.findNext(i+1);
 		if(next == sqrt)
-			return M;
+			return max; // return M?
 		return next*sqrt + trees[next].min;
 	}
 	
