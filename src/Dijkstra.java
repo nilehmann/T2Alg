@@ -10,7 +10,7 @@ public class Dijkstra {
 	public Dijkstra(List<Pair<Integer>> graph[], int N){
 		this.graph = graph;
 		this.N = N;
-		queue = new PriorityArray<Integer>(N);
+		queue = new Heap<Integer>(N);
 	}
 	
 	
