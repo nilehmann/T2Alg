@@ -1,3 +1,6 @@
+import java.util.Arrays;
+
+
 public class PriorityArray<T extends Comparable<T>> implements PriorityQueue<T>{
 	private Pair<T> arr[];
 	private int size;
@@ -16,19 +19,20 @@ public class PriorityArray<T extends Comparable<T>> implements PriorityQueue<T>{
 
 	@Override
 	public Pair<T> poll() {
-		int i = 0;
-		while(arr[i++] == null);
+		size--;
+		int i;
+		for(i = 0; arr[i] == null; ++i);
 		
-		Pair<T> min = arr[i-1];
-		int imin = i-1;
-		for (;i < arr.length; ++i) {
+		Pair<T> min = arr[i];
+		int imin = i;
+		for (i = i+1;i < arr.length; ++i) {
 			if(arr[i] != null && arr[i].second.compareTo(min.second) < 0){
 				min =  arr[i];
 				imin = i;
 			}
 		}
+		
 		arr[imin] = null;
-		size--;
 		return min;		
 	}
 
@@ -45,8 +49,7 @@ public class PriorityArray<T extends Comparable<T>> implements PriorityQueue<T>{
 
 	@Override
 	public void clear() {
-		for (int i = 0; i < arr.length; i++)
-			arr[i] = null;
+		Arrays.fill(arr, null);
 		size = 0;
 	}
 	

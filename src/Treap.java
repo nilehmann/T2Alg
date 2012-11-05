@@ -40,22 +40,24 @@ public class Treap<T extends Comparable<T>> implements PriorityQueue<T>{
 	}
 
 	private TreapNode<T> update(TreapNode<T> n, int key, T val){
-		if(n == null)
+		if(n == null){
+			System.out.println("hola");
 			return null;
+		}
 		
 		if(key == n.key()){
 			n.update(val);
 			if(n.right == null && n.left == null)
 				return n;
 			
-			if(n.left == null || (n.right != null && n.right.val().compareTo(n.left.val())<0 )){
+			if(n.left == null || (n.right != null && n.right.val().compareTo(n.left.val())<=0 )){
 				if( n.val().compareTo(n.right.val()) > 0){
 					n = rotateLeft(n);
 					n.left = update(n.left,key, val);
 				}
 				
 			}
-			else if(n.right == null || (n.left != null && n.left.val().compareTo(n.right.val())<0) ){
+			else if(n.right == null || (n.left != null && n.left.val().compareTo(n.right.val())<=0) ){
 				if(n.val().compareTo(n.left.val())>0){
 					n = rotateRight(n);
 					n.right = update(n.right, key, val); 
@@ -64,12 +66,12 @@ public class Treap<T extends Comparable<T>> implements PriorityQueue<T>{
 		}
 		else if(key < n.key()){
 			n.left = update(n.left, key, val);
-			if( n.left != null && n.val().compareTo(n.left.val())>0)
+			if(n.val().compareTo(n.left.val())>0)
 				n = rotateRight(n);
 		}
 		else{
 			n.right = update(n.right, key, val);
-			if(n.right != null && n.val().compareTo(n.right.val())>0)
+			if(n.val().compareTo(n.right.val())>0)
 				n = rotateLeft(n);
 		}
 		return n;
@@ -133,11 +135,14 @@ public class Treap<T extends Comparable<T>> implements PriorityQueue<T>{
 		if(n == null)
 			return null;
 		if(n.key() == key){
-			size--;
-			if(n.left == null)
+			if(n.left == null){
+				size--;
 				return n.right;
-			if(n.right == null)
+			}
+			if(n.right == null){
+				size--;
 				return n.left;
+			}
 			
 			if(n.right.val().compareTo(n.left.val())<0){
 				n = rotateLeft(n);

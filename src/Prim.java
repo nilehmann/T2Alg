@@ -27,7 +27,7 @@ public class Prim {
 	}
 	
 	public List<Edge> compute(int w){
-		double node[] = new double[N+1];
+		int node[] = new int[N+1];
 		int nodeToEdge[] = new int[N+1];
 		
 		for (int i = 0; i <= N; i++)
@@ -38,8 +38,9 @@ public class Prim {
 		int count = 0;
 		node[w] = -1000;
 		for(Pair<Integer> v : graph[w]){
-			queue.offer(count, new Edge(count++, w, v.first,  v.second));
+			queue.offer(count, new Edge(count, w, v.first,  v.second));
 			node[v.first] = v.second;
+			nodeToEdge[v.first] = count++;
 		}
 		
 		while(queue.size() > 0){

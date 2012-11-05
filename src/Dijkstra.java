@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -27,16 +28,11 @@ public class Dijkstra {
 	}
 	
 	
-	public double compute(int s, int t){
+	public int[] compute(int s){		
+		int dist[] = new int[N+1];
+		Arrays.fill(dist, Integer.MAX_VALUE);
+
 		queue.clear();
-		
-		Integer dist[] = new Integer[N+1];
-		for (int i = 0; i < N; i++){
-			if(i!= s){
-				queue.offer(i, Integer.MAX_VALUE);
-				dist[i] = Integer.MAX_VALUE;
-			}
-		}
 		queue.offer(s,0);
 		
 		while(queue.size()>0){
@@ -45,13 +41,17 @@ public class Dijkstra {
 			
 			for(Pair<Integer> vecino : graph[nodo.first]){
 				int new_dist =  dist[nodo.first] + vecino.second;
-				if(new_dist < dist[vecino.first]){
+				if(dist[vecino.first] == Integer.MAX_VALUE){
+					queue.offer(vecino.first, new_dist);
+					dist[vecino.first] = new_dist;
+				}
+				else if(new_dist < dist[vecino.first]){
 					queue.update(vecino.first, new_dist);
 					dist[vecino.first] = new_dist;
 				}
 			}
 		}
 		
-		return dist[t];		
+		return dist;		
 	}
 }

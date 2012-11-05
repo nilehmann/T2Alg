@@ -37,5 +37,14 @@ public class Edge implements Comparable<Edge> {
 		if(this.distance == o.distance)
 			return this.ID - o.ID;
 		return this.distance - o.distance;
-	} 
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if(o instanceof Edge ){
+			Edge e = (Edge) o;
+			return startNode == e.startNode && endNode == e.endNode && distance == e.distance;
+		}
+		return false;
+	}
 } 

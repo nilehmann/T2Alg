@@ -8,7 +8,7 @@ public class FixedHeap implements Iterable{
 		heap = new Edge[N+1];
 		for (int i = 0; i < arr.length; i++) 
 			heap[i+1] = arr[i];
-		size = 0;
+		size = arr.length;
 		int start = (N+1)/2;
 		while(start >= 1){
 			bubbleDown(start);

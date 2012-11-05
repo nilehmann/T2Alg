@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 
@@ -23,21 +24,46 @@ public class Tarea2 {
 			graph[i] = new ArrayList<Pair<Integer>>();
 		
 		readGraph(graph, edges, V, E);
-		
-		Iterable v = new IterableVEB(edges,1048576);
 
-		Edge ant = v.getNext(); 
-		Edge curr;
-		while((curr = v.getNext()) != null){
-			if (curr.getDistance() > ant.getDistance()) 
-				System.out.println(curr);
-			
-		}
 	
+		testKruskal(edges, V);
+	
+//		testDijkstra(graph, V);
+//		testPrim(graph, V);
 		
-		
-
 	}
+	
+	
+	static void testKruskal(Edge edges[], int V){
+		for(int i = 0; i < 100; i++){
+			Kruskal k = new Kruskal(edges,V, Kruskal.RADIXSORT);
+			
+			k.compute();
+		}
+	}
+	
+	static void testDijkstra(List<Pair<Integer>> graph[], int N){
+		Random rd = new Random();
+
+		for (int i = 0; i < 100; i++) {
+			Dijkstra d = new Dijkstra(graph, N, Dijkstra.ARRAY);
+			
+			d.compute(rd.nextInt(N));
+		}
+	}
+	
+	
+	static void testPrim(List<Pair<Integer>> graph[], int N){
+		Random rd = new Random();
+
+		for (int i = 0; i < 100; i++) {
+			Prim p = new Prim(graph, N, Prim.ARRAY);
+			
+			p.compute(rd.nextInt(N));
+		}
+	}
+	
+	
 	
 	static void readGraph(List<Pair<Integer>> graph[], Edge edges[], int V, int E) throws IOException{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -48,7 +74,7 @@ public class Tarea2 {
 			st.nextToken();
 			int n1 = Integer.parseInt(st.nextToken());
 			int n2 = Integer.parseInt(st.nextToken());
-			int dist = (int) Math.round(Double.parseDouble(st.nextToken())*100000);
+			int dist = (int) Math.round(Double.parseDouble(st.nextToken())*10000);
 			
 			max = Math.max(max,n1);
 			max = Math.max(max,n2);
