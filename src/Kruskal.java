@@ -21,8 +21,10 @@ public class Kruskal {
     		q = new FixedHeap(edges);
     	else if(sortMethod == RADIXSORT)
     		q = new RadixSort(edges, 7);
-    	else if(sortMethod == VEB)
-    		q = new IterableVEB(edges, 10000);
+    	else if(sortMethod == VEB){
+    		q = new IterableVEB(edges);
+    		System.out.println("vEB initialized");
+    	}
     	else
     		q = new QuickSort(edges);
     }

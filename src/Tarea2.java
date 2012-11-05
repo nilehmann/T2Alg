@@ -20,14 +20,27 @@ public class Tarea2 {
 		List<Pair<Integer>> graph[] = new ArrayList[V];
 		Edge edges[] = new Edge[E];
 		
+
+		
 		for (int i = 0; i < V; i++) 
 			graph[i] = new ArrayList<Pair<Integer>>();
 		
-		readGraph(graph, edges, V, E);
+		readGraph(graph, edges, V, E);		
 
-		Iterable vEB = new IterableVEB(edges, 10000000);
 		
-//		testKruskal(edges, V);
+//		Iterable vEB = new IterableVEB(edges2, 6300000);
+//		System.out.println("vEB inicializado");
+//		Iterable qs = new QuickSort(edges);
+//		
+//		for (int i = 0; i < edges.length; i++) {
+//			Edge e1 = qs.getNext();
+//			Edge e2 = vEB.getNext();
+//			if(e1.getDistance() != e2.getDistance())
+//				System.out.println(e1+" "+e2);
+//		}
+//		
+		
+		testKruskal(edges, V);
 	
 //		testDijkstra(graph, V);
 //		testPrim(graph, V);
@@ -36,10 +49,10 @@ public class Tarea2 {
 	
 	
 	static void testKruskal(Edge edges[], int V){
-		for(int i = 0; i < 100; i++){
-			Kruskal k = new Kruskal(edges,V, Kruskal.RADIXSORT);
+		for(int i = 0; i < 10; i++){
+			Kruskal k = new Kruskal(edges,V, Kruskal.VEB);
 			
-			k.compute();
+			System.out.println(k.compute().size());
 		}
 	}
 	
@@ -75,17 +88,16 @@ public class Tarea2 {
 			st.nextToken();
 			int n1 = Integer.parseInt(st.nextToken());
 			int n2 = Integer.parseInt(st.nextToken());
-			int dist = (int) Math.round(Double.parseDouble(st.nextToken())*100000);
+			int dist = (int) Math.round(Double.parseDouble(st.nextToken())*10000);
 			
-			max = Math.max(max,n1);
-			max = Math.max(max,n2);
+			max = Math.max(max,dist);
 			
 			edges[i] = new Edge(i, n1, n2, dist);	
 			
 			graph[n1].add(new Pair<Integer>(n2,dist));
 			graph[n2].add(new Pair<Integer>(n1,dist));		
 		}
-			
+		System.out.println(max);
 	}
 	
 }

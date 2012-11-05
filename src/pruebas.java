@@ -3,12 +3,14 @@ import java.io.IOException;
 
 public class pruebas {
 	public static void main(String[] args) throws IOException {
-		int N=1048576;
+		int N=6300000;
+		System.out.println(N);
 		VanEmdeBoas VEB= new VanEmdeBoas(N);
+		System.out.println("creaci√≥n "+N);
 		for (int i=0; i<N;i++){
 			VEB.insert(i);			
 		}
-		System.out.println("inserciÛn lista");	
+		System.out.println("insercin lista");	
 		int ant=3; int curr=0;
 		for(int i=1; i<250000;i++){
 			//System.out.println(VEB.findNext(4*i));
@@ -18,7 +20,7 @@ public class pruebas {
 			ant=curr;
 	
 		}
-		System.out.println("terminÈ");		
+		System.out.println("termin");		
 		
 	}
 }
