@@ -25,8 +25,9 @@ public class Tarea2 {
 		
 		readGraph(graph, edges, V, E);
 
-	
-		testKruskal(edges, V);
+		Iterable vEB = new IterableVEB(edges, 10000000);
+		
+//		testKruskal(edges, V);
 	
 //		testDijkstra(graph, V);
 //		testPrim(graph, V);
@@ -74,7 +75,7 @@ public class Tarea2 {
 			st.nextToken();
 			int n1 = Integer.parseInt(st.nextToken());
 			int n2 = Integer.parseInt(st.nextToken());
-			int dist = (int) Math.round(Double.parseDouble(st.nextToken())*10000);
+			int dist = (int) Math.round(Double.parseDouble(st.nextToken())*100000);
 			
 			max = Math.max(max,n1);
 			max = Math.max(max,n2);

@@ -8,9 +8,9 @@ public class IterableVEB implements Iterable{
 	public IterableVEB(Edge[] edges, int M){
 		this.M = M;
 		current = -1;
-		h = new Hash(M,10);
+		h = new Hash(M,3);
 		
-		vEB = new VanEmdeBoas(M*10);
+		vEB = new VanEmdeBoas(M*3);
 		for(Edge e : edges)
 			vEB.insert(h.add(e.getDistance(), e));
 	}
